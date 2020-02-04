@@ -1,6 +1,5 @@
 import socket
 from select import select
-from time import sleep
 
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)  # args: IPv4, TCP/IP
 server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)  # args: socket layer, reuse addr without timeout
@@ -34,13 +33,7 @@ def event_loop():
                 acctpt(sock)
             else:
                 receive(sock)
-        sleep(1)
 
 
-def main():
-    to_monitor.append(server)
-    event_loop()
-
-
-if __name__ == '__main__':
-    main()
+to_monitor.append(server)
+event_loop()
