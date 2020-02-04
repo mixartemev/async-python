@@ -27,7 +27,7 @@ def receive(client_sock: socket):
 
 def event_loop():
     while True:
-        ready_to_read = select(to_monitor, [], [])
+        ready_to_read, _, _ = select(to_monitor, [], [])
         # todo: when client close connection -> ValueError: file descriptor cannot be a negative integer (-1)
         for sock in ready_to_read:
             if sock is server:
